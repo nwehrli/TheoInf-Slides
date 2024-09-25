@@ -1,0 +1,20 @@
+name: Upload Content
+# Run on pushes to the master branch
+on: 
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    # Looks kind of complicated but just uploads the content of slides folder to the ftp server. 
+    # It does not upload the slides folder itself.
+    - name: Upload site with SFTP
+      uses:  wlixcc/SFTP-Deploy-Action@v1.2.4
+      with:
+        server: ${{ secrets.FTP_LOCATION }} 
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local_path: './slides/*'
+        remote_path: '/nas/nwehrl/homepage/assets/documents/TheoInf/'
