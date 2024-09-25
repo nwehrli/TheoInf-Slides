@@ -8,11 +8,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: debug
-      run: echo "Current path "
-           pwd
-           echo "directory contents "
-           ls
+    - uses: actions/checkout@v4
+   
     # Looks kind of complicated but just uploads the content of slides folder to the ftp server. 
     # It does not upload the slides folder itself.
     - name: Upload site with SFTP
